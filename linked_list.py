@@ -63,3 +63,34 @@ class LinkedList:
             return 0
 
         return 1 + self.count_node_recursive(node.next)
+
+    def find_node(self, value) -> bool:
+        runner: Node = self.head
+
+        while runner is not None:
+            if runner.value == value:
+                return True
+
+            runner = runner.next
+
+        return False
+
+    def delete_node(self, target_value):
+        if self.head is None:
+            return False
+
+        if self.head.value == target_value:
+            self.head = self.head.next
+            return True
+        else:
+            previous: Node = self.head
+            runner: Node = self.head.next
+
+            while runner is not None:
+                if runner.value == target_value:
+                    previous.next = runner.next
+                    return True
+                previous = runner
+                runner = runner.next
+
+        return False
